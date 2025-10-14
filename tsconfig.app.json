@@ -22,13 +22,10 @@
     "strict": true,                       // 타입 검사
     "erasableSyntaxOnly": true,           // 타입만 지움 -> 최신 js문법 유지
     "noUncheckedSideEffectImports": true, // 변수 지정없이 import 방지
-    // "noUnusedLocals": true,            // 사용하지 않는 변수 방지
-    // "noUnusedParameters": true,        // 사용하지 않은 파라미터 방지
-    // "noFallthroughCasesInSwitch": true,// switch문 안에 break 생략 방지
 
     /* path */
-    "baseUrl": "./src",
-    "paths": { "@/*": ["*"] }
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
