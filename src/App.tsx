@@ -12,8 +12,6 @@ import viteLogo from '/vite.svg';
 function App() {
   console.log(import.meta);
   console.log(import.meta.env.BASE_URL);
-  // const [data, setData] = useState(DATA);
-  // console.log(data);
 
   const [count, setCount] = useState(0);
 

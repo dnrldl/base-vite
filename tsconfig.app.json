@@ -27,8 +27,8 @@
     // "noFallthroughCasesInSwitch": true,// switch문 안에 break 생략 방지
 
     /* path */
-    "baseUrl": ".",
-    "paths": { "@/*": ["./src/*"] }
+    "baseUrl": "./src",
+    "paths": { "@/*": ["*"] }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
