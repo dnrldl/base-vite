@@ -4,37 +4,54 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import importPlugin from 'eslint-plugin-import';
+import reactPlugin from 'eslint-plugin-react';
 import { defineConfig, globalIgnores } from 'eslint/config';
+import eslintPluginSimpleImportSort from 'eslint-plugin-simple-import-sort';
 
-// prettier-ignore
 export default defineConfig([
   globalIgnores(['dist']),
   {
     files: ['**/*.{ts,tsx}'],
+    plugins: {
+      react: reactPlugin,
+      import: importPlugin,
+      'simple-import-sort': eslintPluginSimpleImportSort,
+    },
     extends: [
-      js.configs.recommended,                     // js 기본 문법 오류, 코드 품질 검사
-      tseslint.configs.recommended,               // ts parser 활성화
-      reactHooks.configs['recommended-latest'],   // react hook 사용 위반 검사
-      reactRefresh.configs.vite,                  // 핫 리로드 규칙 (vite 보조)
+      js.configs.recommended, // js 기본 문법 오류, 코드 품질 검사
+      tseslint.configs.recommended, // ts parser 활성화
+      reactHooks.configs['recommended-latest'], // react hook 사용 위반 검사
+      reactRefresh.configs.vite, // 핫 리로드 규칙 (vite 보조)
     ],
-    languageOptions: {                            // window, document, fetch 등을 전역 객체로 인식
+    languageOptions: {
+      // window, document, fetch 등을 전역 객체로 인식
       ecmaVersion: 2020,
       globals: globals.browser,
     },
 
     rules: {
+      'react/jsx-key': 'warn',
+
       // 미사용 변수 방지
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
-      'import/order': ['warn', {
-        'groups': ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
-        'newlines-between': 'always',
-        'alphabetize': { 'order': 'asc' }
-      }],
-      // 'import/order': 'warn', // import 순서 일관성
-      // 'react/self-closing-comp': 'warn', // <img></img> 대신 <img />
-      // 'no-console': ['warn', { allow: ['warn', 'error'] }],
 
+      'simple-import-sort/imports': [
+        'warn',
+        {
+          groups: [
+            // React, 외부 라이브러리
+            ['^react', '^@?\\w'],
+            // 내부 alias import (@/hooks, @/components 등)
+            ['^@/'],
+            // 상대경로 (상위 → 동일 → 하위)
+            ['^\\.\\.(?!/?$)', '^\\./(?=.*/)(?!/?$)', '^\\./?$'],
+            // 스타일, CSS
+            ['^.+\\.?(css)$'],
+          ],
+        },
+      ],
+      'simple-import-sort/exports': 'warn',
     },
   },
 ]);

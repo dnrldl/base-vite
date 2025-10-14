@@ -1,12 +1,17 @@
-import './App.css';
-import { useTest } from '@/hooks/useTest';
-import viteLogo from '/vite.svg';
 import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
 
-const DATA = ['asd', 'asd'];
+import reactLogo from '@/assets/react.svg';
+import { useTest } from '@/hooks/useTest';
+
+import './App.css';
+
+import viteLogo from '/vite.svg';
+
+// useEffect(() => {}, []);
 
 function App() {
+  console.log(import.meta);
+  console.log(import.meta.env.BASE_URL);
   // const [data, setData] = useState(DATA);
   // console.log(data);
 
@@ -35,9 +40,6 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <p>asdasdasd</p>
-      {DATA.map((d) => (
-        <p>{d}</p>
-      ))}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
