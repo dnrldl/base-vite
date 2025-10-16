@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import importPlugin from 'eslint-plugin-import';
 import reactPlugin from 'eslint-plugin-react';
@@ -16,6 +17,7 @@ export default defineConfig([
       react: reactPlugin,
       import: importPlugin,
       'simple-import-sort': eslintPluginSimpleImportSort,
+      '@tanstack/query': pluginQuery,
     },
     extends: [
       js.configs.recommended, // js 기본 문법 오류, 코드 품질 검사
@@ -37,14 +39,17 @@ export default defineConfig([
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
 
+      // react-query
+      '@tanstack/query/exhaustive-deps': 'error',
+
       'simple-import-sort/imports': [
         'warn',
         {
           groups: [
             // React, 외부 라이브러리
-            ['^react', '^@?\\w'],
+            ['^react', '^@?\\w', '^@/'],
             // 내부 alias import (@/hooks, @/components 등)
-            ['^@/'],
+            // ['^@/'],
             // 상대경로 (상위 → 동일 → 하위)
             ['^\\.\\.(?!/?$)', '^\\./(?=.*/)(?!/?$)', '^\\./?$'],
             // 스타일, CSS

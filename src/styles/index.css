@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+@layer base {
+  :root {
+    --color-bg: rgba(16, 16, 16, 0.85);
+    --color-text: rgb(243, 245, 247);
+  }
+
+  [data-theme='dark'] {
+    --color-bg:  
+  ;
+  }
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+}

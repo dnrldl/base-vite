@@ -1,5 +1,5 @@
-import Header from '@/shared/layouts/Header';
-import Navbar from '@/shared/layouts/Navbar';
+import Header from './Header';
+import Navbar from './Navbar';
 
 interface ContainerProps {
   children: React.ReactNode;
