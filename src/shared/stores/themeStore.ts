@@ -1,4 +1,3 @@
-// src/shared/stores/themeStore.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -19,17 +18,20 @@ export const useThemeStore = create<State & Action>()(
     (set, get) => ({
       theme: 'system',
 
+      // 테마 적용
       setTheme: (theme) => {
         set({ theme });
         get().applyTheme(theme);
       },
 
+      // 테마 토글
       toggleTheme: () => {
         const current = get().theme === 'light' ? 'dark' : 'light';
         set({ theme: current });
         get().applyTheme(current);
       },
 
+      // 테마 실제 적용
       applyTheme: (themeParam?: Theme) => {
         const theme = themeParam ?? get().theme;
 

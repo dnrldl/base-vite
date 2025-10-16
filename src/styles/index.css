@@ -1,22 +1,19 @@
 @import 'tailwindcss';
 
-@layer base {
-  :root {
-    --color-bg: rgba(16, 16, 16, 0.85);
-    --color-text: rgb(243, 245, 247);
-  }
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-  [data-theme='dark'] {
-    --color-bg:  
-  ;
-  }
+:root {
+  --color-bg: rgb(255 255 255);
+  --color-text: rgb(17 24 39);
 }
 
-* {
-  margin: 0;
-  box-sizing: border-box;
+[data-theme='dark'] {
+  --color-bg: rgba(16 16 16 / 0.85);
+  --color-text: rgb(243 245 247);
 }
 
+/* 전역 기본 적용(선택) */
 body {
-  margin: 0 auto;
+  background-color: var(--color-bg);
+  color: var(--color-text);
 }
